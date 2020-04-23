@@ -1,5 +1,6 @@
 @cetURL = http://cet.hzau.edu.cn/
 @cetTZGGURL = http://cet.hzau.edu.cn/xydt/tzgg/1.htm
 
+@lxyTZGGURL = http://lxy.hzau.edu.cn/tzgg/1.htm
 
-GET {{cetTZGGURL}} HTTP/1.1
+GET {{lxyTZGGURL}} HTTP/1.1
