@@ -1,0 +1,5 @@
+@cetURL = http://cet.hzau.edu.cn/
+@cetTZGGURL = http://cet.hzau.edu.cn/xydt/tzgg/1.htm
+
+
+GET {{cetTZGGURL}} HTTP/1.1
