@@ -8,6 +8,7 @@ otherUrl = 'http://lxy.hzau.edu.cn/tzgg.htm'
 baseUrl = 'http://lxy.hzau.edu.cn/'
 staticListUrl = 'http://lxy.hzau.edu.cn/tzgg/statlist.js'
 filePath = 'pro-ZhiNong\Science\lyx_tzgg.csv'
+selectPath = 'ul li.Listyle1'
 
 def getStaticList():
     r = requests.get(staticListUrl)
@@ -36,7 +37,7 @@ def requestUrl(reqUrl):
 
 def parserSoup(html, start, pageCount, index):
     soup = BeautifulSoup(html, 'html.parser')
-    news = soup.select('ul li.Listyle1')
+    news = soup.select(selectPath)
     for i, new in enumerate(news):
         if(index == 0):
             if(i < pageCount):

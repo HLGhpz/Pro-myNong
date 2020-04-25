@@ -9,6 +9,7 @@ otherUrl = 'http://cet.hzau.edu.cn/xydt/tzgg.htm'
 baseUrl = 'http://cet.hzau.edu.cn/'
 staticListUrl = 'http://cet.hzau.edu.cn/xydt/tzgg/statlist.js'
 filePath = 'pro-ZhiNong\Engineering\cet_tzgg.csv'
+selectPath = 'ul.list li'
 
 
 def getStaticList():
@@ -39,12 +40,13 @@ def requestUrl(reqUrl):
 
 def parserSoup(html, start, pageCount, index):
     soup = BeautifulSoup(html, 'html.parser')
-    news = soup.select('ul li.Listyle1')
+    news = soup.select(selectPath)
+    print(news)
     for i, new in enumerate(news):
-        print('开始第%d页'%i)
         if(index == 0):
             if(i < pageCount):
                 [title, link, time] = [new.a['title'], baseUrl + new.a['href'], new.span.text]
+                print([title, link, time])
                 writeCsv([title, link, time])
         else:
             if(i >= start and i < start+pageCount):
@@ -60,6 +62,7 @@ def main():
     [start, pageCount, totalPages] = getStaticList()
     requestUrls = creatUrl(totalPages)
     for index,reqUrl in enumerate(requestUrls):
+        print('reqUrl = ' + reqUrl)
         html = requestUrl(reqUrl)
         parserSoup(html, start, pageCount, index)
 
