@@ -32,7 +32,7 @@ instance.get(hdygUrl)
 			// 			decodeEntities: false
 			// 		});
 			// 		let imageLink = $(selectImagePath).attr('src')
-			// 		console.log(imageLink)
+			// 		console.log(sponsor, title, time, imageLink)
 			// 	})
 
 			// news.push({sponsor, title, time, link})
