@@ -1,0 +1,55 @@
+```
+collegeAlias,profession,professionAlias
+DYDK,动物科学 ,Dwkx
+DYDK,动物医学 ,Dwyx
+GX,机械电子工程 ,Jxdzgc
+GX,机械设计制造及其自动化 ,Jxsjzzjqzdh
+GX,能源与动力工程 ,Nyydlgc
+GX,农业机械化及其自动化 ,Nyjxhjqzdh
+GX,自动化 ,Zdh
+GG,工程管理 ,Gcgl
+GG,行政管理 ,Xzgl
+GG,土地资源管理 ,Tdzygl
+GG,信息管理与信息系统 ,Xxglyxxxt
+JG,工商管理 ,Gsgl
+JG,国际经济与贸易 ,Gjjjymy
+JG,会计学 ,Kjx
+JG,经济学 ,Jjx
+JG,农林经济管理 ,Nljjgl
+JG,人力资源管理 ,Rlzzgl
+JG,市场营销 ,Scyx
+LX,信息与计算科学 ,Xxyjskx
+LX,应用化学 ,Yyhx
+SMKX,生物工程 ,Swgc
+SMKX,生物技术 ,Swjs
+SMKX,生物科学 ,Swkx
+SK,食品科学与工程 ,Spkxygc
+SK,食品质量与安全 ,Spzzykx
+SC,水产养殖学 ,Scyzx
+SC,水族科学与技术 ,Szkxyjs
+WGY,商务英语 ,Swyy
+WGY,英语 ,Yy_WGY
+WF,法学 ,Fx
+WF,广告学 ,Ggx
+WF,社会工作 ,Shgz
+WF,社会学 ,Shx
+WF,视觉传达设计 ,Sjcdsj
+XX,计算机科学与技术 ,Jsjkxyjs
+XX,生物信息学 ,Swxxx
+YYLX,茶学 ,Cx
+YYLX,风景园林 ,Fjyl
+YYLX,林学 ,Lx
+YYLX,设施农业科学与工程 ,Ssnykxygc
+YYLX,园林 ,Yl
+YYLX,园艺 ,Yy_YYLX
+ZK,农学 ,Nx
+ZK,植物保护 ,Zwbh
+ZK,植物科学与技术 ,Zwkxyjs
+ZK,种子科学与工程 ,Zzkxygc
+ZH,地理信息科学 ,Dlxxxx
+ZH,环境工程 ,Hjgc
+ZH,环境科学 ,Hjkx
+ZH,环境生态工程 ,Hjstgc
+ZH,农业资源与环境 ,Nyzyyhj
+
+```
