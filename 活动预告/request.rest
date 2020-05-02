@@ -1,3 +1,5 @@
-@hdygURL = http://www.hzau.edu.cn/hdyg.htm
+# @hdygURL = http://www.hzau.edu.cn/hdyg.htm
 
-GET {{hdygURL}} HTTP/1.1
+@hdygImageURL = http://www.hzau.edu.cn/info/1062/10753.htm
+
+GET {{hdygImageURL}} HTTP/1.1

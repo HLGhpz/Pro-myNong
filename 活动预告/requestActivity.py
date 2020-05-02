@@ -5,14 +5,22 @@ import re
 import csv
 
 url = 'http://www.hzau.edu.cn/hdyg/'
-otherUrl = 'http://www.hzau.edu.cn/hdyg.htm'
-baseUrl = 'http://www.hzau.edu.cn/'
 staticListUrl = 'http://www.hzau.edu.cn/hdyg/statlist.js'
-filePath = '活动预告\\activity.csv'
+# 用于请求分页数据
+otherUrl = 'http://www.hzau.edu.cn/hdyg.htm'
+# 第一页URL
+baseUrl = 'http://www.hzau.edu.cn/'
+# 添加到请求链接前的baseUrl
 selectPath = 'div.zy-mainxrx ul li'
+# 获取每一条新闻数据
+selectImagePath = 'div.v_news_content p img'
+# 获取具体的图片链接
+filePath = '活动预告\\activityAll.csv'
+# 保存数据
 
 
 def getStaticList():
+    # 获取分页数据函数
     r = requests.get(staticListUrl)
     print('获取静态变量')
     r.encoding = 'utf-8'
@@ -26,6 +34,7 @@ def getStaticList():
 
 
 def creatUrl(number):
+    # 创建请求URL
     reqUrls = []
     for index in range(number, 0, -1):
         if index == number:
@@ -36,35 +45,47 @@ def creatUrl(number):
 
 
 def requestUrl(reqUrl):
+    # 请求URL
     r = requests.get(reqUrl)
     r.encoding = 'utf-8'
     return r.text
 
 
 def parserSoup(html, start, pageCount, index):
+    # 解析活动数据
     soup = BeautifulSoup(html, 'html.parser')
     news = soup.select(selectPath)
     for i, new in enumerate(news):
         if(index == 0):
             if(i < pageCount):
-                # [title, link, sponsor, time] = [new.a['title'], baseUrl + new.a['href'], new.span.text, new.samll.text]
-                # print([title, link, sponsor, time])
-                # writeCsv([title, link, sponsor, time])
-                if(new.span == []):
-                    new.span.text = ""
-                [title, link, sponsor, time] = [new.a['title'],
-                                                baseUrl + new.a['href'], new.span.text, new.samll.text]
-                writeCsv([title, link, sponsor, time])
+                dealActivity(new)
         else:
             if(i >= start and i < start+pageCount):
-                if(new.span == []):
-                    new.span.text = ""
-                [title, link, sponsor, time] = [new.a['title'],
-                                                baseUrl + new.a['href'], new.span.text, new.samll.text]
-                writeCsv([title, link, sponsor, time])
+                dealActivity(new)
+
+
+def dealActivity(new):
+    # 处理活动数据
+    imageHtml = requestUrl(baseUrl + new.a['href'])
+    imageSoup = BeautifulSoup(imageHtml, 'html.parser')
+    listLen = len(imageSoup.select(selectImagePath))
+    print(imageSoup.select(selectImagePath))
+    imgLink = []
+    for imgIndex in range(listLen):
+        imgLink.append(
+            baseUrl + imageSoup.select(selectImagePath)[imgIndex]['src'])
+    # print(imgLink)
+    # if(new.span is None):
+    #     sponsor = ""
+    # else:
+    #     sponsor = new.span.text
+    # [title, link, time] = [new.a['title'],
+    #                        baseUrl + new.a['href'], new.small.text]
+    # writeCsv([title, link, sponsor, time, imgLink])
 
 
 def writeCsv(new):
+    # 写入活动数据到CSV
     with open(filePath, "a", encoding='utf-8') as csvFile:
         writer = csv.writer(csvFile)
         writer.writerow(new)
@@ -81,21 +102,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# for index in range(19, 0, -1):
-#     if index == 19:
-#         reqUrl = 'http://cet.hzau.edu.cn/xydt/tzgg.htm'
-#     else:
-#         reqUrl = url + str(index) + '.htm'
-
-#     r = requests.get(reqUrl)
-#     r.encoding = 'utf-8'
-#     soup = BeautifulSoup(r.text, 'html.parser')
-#     with open("pro-ZhiNong\cet_tzgg.csv", "a", encoding='utf-8') as csvFile:
-#         writer = csv.writer(csvFile)
-#         for news in soup.select('UL.list li'):
-#             cet_new = news.a['title']
-#             cet_link = base_url + news.a['href'].lstrip('../')
-#             cet_time = news.span.text
-#             writer.writerow([cet_new, cet_link, cet_time])
-#     print('完成第' + str(index) + '页')
