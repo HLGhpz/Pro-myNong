@@ -66,22 +66,22 @@ def parserSoup(html, start, pageCount, index):
 
 def dealActivity(new):
     # 处理活动数据
-    imageHtml = requestUrl(baseUrl + new.a['href'])
+    imageHtml = requestUrl(baseUrl + new.a['href'].strip('./'))
     imageSoup = BeautifulSoup(imageHtml, 'html.parser')
     listLen = len(imageSoup.select(selectImagePath))
-    print(imageSoup.select(selectImagePath))
+    # print(imageSoup.select(selectImagePath))
     imgLink = []
     for imgIndex in range(listLen):
         imgLink.append(
-            baseUrl + imageSoup.select(selectImagePath)[imgIndex]['src'])
+            baseUrl + imageSoup.select(selectImagePath)[imgIndex]['src'].strip('./'))
     # print(imgLink)
-    # if(new.span is None):
-    #     sponsor = ""
-    # else:
-    #     sponsor = new.span.text
-    # [title, link, time] = [new.a['title'],
-    #                        baseUrl + new.a['href'], new.small.text]
-    # writeCsv([title, link, sponsor, time, imgLink])
+    if(new.span is None):
+        sponsor = ""
+    else:
+        sponsor = new.span.text
+    [title, link, time] = [new.a['title'],
+                           baseUrl + new.a['href'].strip('./'), new.small.text]
+    writeCsv([title, link, sponsor, time, imgLink])
 
 
 def writeCsv(new):

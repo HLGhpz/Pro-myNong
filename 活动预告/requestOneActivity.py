@@ -31,11 +31,12 @@ def parserSoup(html):
     soup = BeautifulSoup(html, 'html.parser')
     news = soup.select(selectPath)
     for i, new in enumerate(news):
-        if (i == 0):
-            dealActivity(new)
-        else:
-            # print(i)
-            pass
+        dealActivity(new)
+        # if (i == 0):
+        #     dealActivity(new)
+        # else:
+        #     # print(i)
+        #     pass
 
 
 
@@ -47,10 +48,11 @@ def writeCsv(new):
 
 def dealActivity(new):
     # 处理活动数据得到图片URL
-    imageHtml = requestUrl(baseUrl + new.a['href'])
-    imageSoup = BeautifulSoup(imageHtml, 'html.parser')
-    print(imageSoup)
-    listLen = len(imageSoup.select(selectImagePath))
+    print(baseUrl + new.a['href'].strip('./'))
+    # imageHtml = requestUrl(baseUrl + new.a['href'])
+    # imageSoup = BeautifulSoup(imageHtml, 'html.parser')
+    # print(imageSoup)
+    # listLen = len(imageSoup.select(selectImagePath))
 
     # imgLink = []
     # for index in range(listLen):
